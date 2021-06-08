@@ -35,34 +35,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := oled
+BUILD_ARTIFACT_NAME := dl_oled
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX := 
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME).$(BUILD_ARTIFACT_EXTENSION)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-oled.elf \
+dl_oled.elf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-oled.list \
+dl_oled.list \
 
 OBJCOPY_BIN += \
-oled.bin \
+dl_oled.bin \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: oled.elf secondary-outputs
+main-build: dl_oled.elf secondary-outputs
 
 # Tool invocations
-oled.elf: $(OBJS) $(USER_OBJS) C:\Users\ninec\Desktop\Discovery\oled\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "oled.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\ninec\Desktop\Discovery\oled\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="oled.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+dl_oled.elf: $(OBJS) $(USER_OBJS) C:\Users\ninec\Desktop\Discovery\dl_oled\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "dl_oled.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\ninec\Desktop\Discovery\dl_oled\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="dl_oled.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -71,13 +71,13 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-oled.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "oled.list"
+dl_oled.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "dl_oled.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-oled.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "oled.bin"
+dl_oled.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "dl_oled.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 

@@ -55,6 +55,7 @@ static void MX_GPIO_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+// fonksiyon oluşturalım.
 uint32_t Read_HCSR04()
 {
 	uint32_t local_time=0;
